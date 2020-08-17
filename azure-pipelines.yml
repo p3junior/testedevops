@@ -11,7 +11,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  isMain: $[eq(variables['Build.targetBranch'], 'refs/heads/master')]
+  isMain: $[eq(variables['Build.targetBranch'], 'master')]
   isDev: $[eq(variables['Build.SourceBranch'], 'refs/heads/dev')]
 
 stages:
