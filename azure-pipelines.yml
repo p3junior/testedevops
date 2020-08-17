@@ -19,12 +19,12 @@ stages:
   jobs:
   - job: A1
     steps:
-      - script: echo Hello Stage A - DEV
+      - script: echo Hello Stage A - DEV!
 
 - stage: MASTER
   condition: and(succeeded(), eq(variables.isMain, false))
   jobs:
   - job: B1
     steps:
-      - script: echo Hello Stage B - Master
+      - script: echo Hello Stage B - Master!
       - script: echo $(isMain)
