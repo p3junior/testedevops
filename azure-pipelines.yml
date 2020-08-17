@@ -22,7 +22,7 @@ stages:
       - script: echo Hello Stage A - DEV!
 
 - stage: MASTER
-  condition: and(succeeded(), eq(variables.isMain, false))
+  condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
   jobs:
   - job: B1
     steps:
