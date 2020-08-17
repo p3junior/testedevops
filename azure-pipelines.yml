@@ -12,18 +12,17 @@ pool:
 
 variables:
   isMain: $[eq(variables['Build.targetBranch'], 'master')]
-  isDev: $[eq(variables['Build.SourceBranch'], 'refs/heads/dev')]
 
 stages:
 - stage: DEV
-  condition: and(succeeded(), eq(variables.isDev, true))
+  condition: and(succeeded(), eq(variables.isMain, false))
   jobs:
   - job: A1
     steps:
-      - script: echo Hello Stage A!
+      - script: echo Hello Stage A - DEV!
 
 - stage: MASTER
-  condition: and(always(), eq(variables.isMain, true))
+  condition: and(succeeded(), eq(variables.isMain, true))
   jobs:
   - job: B1
     steps:
