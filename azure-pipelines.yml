@@ -23,7 +23,7 @@ stages:
       - script: echo Hello Stage A!
 
 - stage: MASTER
-  condition: eq(variables.isMain, true))
+  condition: and(always(), eq(variables.isMain, true))
   jobs:
   - job: B1
     steps:
