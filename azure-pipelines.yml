@@ -12,7 +12,7 @@ pool:
 
 variables:
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/dev')]
-  isPull: $[eq(variables['Build.Build.Reason'], 'PullRequest')]
+  isPull: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 
 stages:
 - stage: DEV
@@ -20,7 +20,7 @@ stages:
   jobs:
   - job: A1
     steps:
-      - script: echo Hello Stage A - DEV!  ['Build.Build.Reason']
+      - script: echo Hello Stage A - DEV!
 
 - stage: MASTER
   condition: and(succeeded(), eq(variables.isPull, true))
@@ -28,4 +28,4 @@ stages:
   - job: B1
     steps:
       - script: echo Hello Stage B - Master!
-      - script: echo $(isMain)
+      - script: echo $(isPull)
