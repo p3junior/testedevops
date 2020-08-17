@@ -23,9 +23,10 @@ stages:
       - script: echo Hello Stage A - DEV!
 
 - stage: MASTER
-  condition: and(succeeded(), eq(variables.isPull, true))
+  dependsOn: DEV
+  condition: failed()
   jobs:
   - job: B1
     steps:
       - script: echo Hello Stage B - Master!
-      - script: echo $(isMain)
+      - script: echo $(isPull)
