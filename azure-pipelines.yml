@@ -15,18 +15,16 @@ variables:
   isPull: $[eq(variables['Build.SourceBranch'], 'refs/pull/1/merge')]
 
 stages:
-- stage: DEV
+- stage: PUBLICACAO
   condition: and(succeeded(), eq(variables.isMain, true))
   jobs:
   - job: A1
     steps:
       - script: echo Hello Stage A - DEV!
 
-- stage: MASTER
-  pr:
-  - master
-  jobs:
   - job: B1
+  dependsOn: A1
+  condition: skipped()
     steps:
       - script: echo Hello Stage B - Master!
       - script: echo $(isPull)
