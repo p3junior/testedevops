@@ -11,18 +11,18 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  isMain: $[eq(variables['Build.SourceBranch'], 'master')]
+  isMain: $[eq(variables['Build.SourceBranch'], 'dev')]
 
 stages:
 - stage: DEV
-  condition: and(succeeded(), eq(variables.isMain, false))
+  condition: and(succeeded(), eq(variables.isMain, true))
   jobs:
   - job: A1
     steps:
       - script: echo Hello Stage A - DEV!
 
 - stage: MASTER
-  condition: and(succeeded(), eq(variables.isMain, true))
+  condition: and(succeeded(), eq(variables.isMain, false))
   jobs:
   - job: B1
     steps:
