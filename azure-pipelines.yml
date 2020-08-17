@@ -12,7 +12,7 @@ pool:
 
 variables:
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/dev')]
-  isPull: $[eq(variables['Build.Reason'], 'PullRequest')]
+  isPull: $[eq(variables['Build.SourceBranch'], 'refs/pull/1/merge')]
 
 stages:
 - stage: DEV
